@@ -37,6 +37,12 @@ public class ClienteService {
 		Cliente.class.getName()));
 }
 	
+	public Cliente find(String cpfOuCnpj) {
+		Optional<Cliente> obj = repo.findByCpfOuCnpj(cpfOuCnpj);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado...:cpfOuCnpj: " + cpfOuCnpj + ", Tipo: " + 
+		Cliente.class.getName()));
+}
+	
 	
 	@Transactional
 	public Cliente insert(Cliente obj) {

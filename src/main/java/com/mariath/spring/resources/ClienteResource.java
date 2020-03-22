@@ -29,9 +29,15 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService service;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		Cliente obj = service.find(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(value = "/cpfOuCnpj/{cpfOuCnpj}", method = RequestMethod.GET)
+	public ResponseEntity<Cliente> find(@PathVariable String cpfOuCnpj) {
+		Cliente obj = service.find(cpfOuCnpj);
 		return ResponseEntity.ok().body(obj);
 	}
 	
