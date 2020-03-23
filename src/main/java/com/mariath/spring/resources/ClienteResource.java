@@ -1,10 +1,15 @@
-	package com.mariath.spring.resources;
+package com.mariath.spring.resources;
 
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
+
+import com.mariath.spring.domain.Cliente;
+import com.mariath.spring.dto.ClienteDTO;
+import com.mariath.spring.dto.ClienteNewDTO;
+import com.mariath.spring.services.ClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,11 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.mariath.spring.domain.Cliente;
-import com.mariath.spring.dto.ClienteDTO;
-import com.mariath.spring.dto.ClienteNewDTO;
-import com.mariath.spring.services.ClienteService;
 
 @RestController
 @RequestMapping(value = "/clientes")
@@ -34,7 +34,7 @@ public class ClienteResource {
 		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO) {
 		Cliente obj = service.fromDTO(objDTO);
