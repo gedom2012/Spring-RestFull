@@ -6,11 +6,6 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import com.mariath.spring.domain.Cliente;
-import com.mariath.spring.dto.ClienteDTO;
-import com.mariath.spring.dto.ClienteNewDTO;
-import com.mariath.spring.services.ClienteService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.mariath.spring.domain.Cliente;
+import com.mariath.spring.dto.ClienteDTO;
+import com.mariath.spring.dto.ClienteNewDTO;
+import com.mariath.spring.services.ClienteService;
 
 @RestController
 @RequestMapping(value = "/clientes")
