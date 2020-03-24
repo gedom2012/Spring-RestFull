@@ -29,15 +29,15 @@ public class DBService {
 
 	public void instantiateDataBase() {
 
-		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est1 = new Estado(null, "Rio Grande do Sul");
 		Estado est2 = new Estado(null, "São Paulo");
 
-		Cidade c1 = new Cidade(null, "Uberlândia", est1);
-		Cidade c2 = new Cidade(null, "São Paulo", est2);
+		Cidade c1 = new Cidade(null, "Porto Alegre", est1);
+		Cidade c2 = new Cidade(null, "Canoas", est1);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 
-		est1.getCidade().addAll(Arrays.asList(c1));
-		est2.getCidade().addAll(Arrays.asList(c2, c3));
+		est1.getCidade().addAll(Arrays.asList(c1, c2));
+		est2.getCidade().addAll(Arrays.asList(c3));
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepositoty.saveAll(Arrays.asList(c1, c2, c3));
