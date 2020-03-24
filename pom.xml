@@ -10,7 +10,7 @@
 		<relativePath />
 	</parent>
 	<groupId>com.mariath.spring</groupId>
-	<artifactId>modeloConceitualNew</artifactId>
+	<artifactId>bempromoback</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bemPromo</name>
 	<properties>
