@@ -3,6 +3,7 @@ package com.mariath.spring.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mariath.spring.domain.Cidade;
@@ -17,7 +18,9 @@ import com.mariath.spring.repositories.EstadoRepository;
 
 @Service
 public class DBService {
-
+	
+	@Autowired
+	private BCryptPasswordEncoder be;
 	@Autowired
 	private EstadoRepository estadoRepository;
 	@Autowired
@@ -43,7 +46,7 @@ public class DBService {
 		cidadeRepositoty.saveAll(Arrays.asList(c1, c2, c3));
 
 		Cliente cli1 = new Cliente(null, "Maria da Silva", "11/01/1985", "maria@gmail.com", "36378912377",
-				TipoCliente.PESSOAFISICA);
+				TipoCliente.PESSOAFISICA, be.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
 		Endereco e1 = new Endereco(null, "Rua FLores", "300", "Apto 203", "Jardim", "38220834", cli1, c1);
