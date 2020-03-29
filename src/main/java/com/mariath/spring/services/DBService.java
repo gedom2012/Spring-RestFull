@@ -11,7 +11,7 @@ import com.mariath.spring.domain.Cliente;
 import com.mariath.spring.domain.Endereco;
 import com.mariath.spring.domain.Estado;
 import com.mariath.spring.domain.enums.TipoCliente;
-import com.mariath.spring.domain.enums.TipoPerfil;
+import com.mariath.spring.domain.enums.Perfil;
 import com.mariath.spring.repositories.CidadeRepository;
 import com.mariath.spring.repositories.ClienteRepository;
 import com.mariath.spring.repositories.EnderecoRepository;
@@ -52,7 +52,7 @@ public class DBService {
 		
 		Cliente cli2 = new Cliente(null, "Joao Raimundo Alves", "20/08/1980", "joao@bempromo.com", "15348733091", 
 				TipoCliente.PESSOAFISICA, be.encode("123"));
-		cli2.addPerfil(TipoPerfil.ADMIN);
+		cli2.addPerfil(Perfil.ADMIN);
 		cli2.getTelefones().addAll(Arrays.asList("34567812", "99342517"));
 
 		Endereco e1 = new Endereco(null, "Rua FLores", "300", "Apto 203", "Jardim", "38220834", cli1, c1);

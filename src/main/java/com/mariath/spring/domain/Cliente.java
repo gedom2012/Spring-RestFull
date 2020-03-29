@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mariath.spring.domain.enums.TipoCliente;
-import com.mariath.spring.domain.enums.TipoPerfil;
+import com.mariath.spring.domain.enums.Perfil;
 
 @Entity
 public class Cliente implements Serializable {
@@ -54,7 +54,7 @@ public class Cliente implements Serializable {
 	
 
 	public Cliente() {
-		addPerfil(TipoPerfil.USER);
+		addPerfil(Perfil.USER);
 	}
 
 	public Cliente(Integer id, String nome, String dataNascimento, String email,
@@ -67,7 +67,7 @@ public class Cliente implements Serializable {
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo == null) ? null : tipo.getCod();
 		this.senha = senha;
-		addPerfil(TipoPerfil.USER);
+		addPerfil(Perfil.USER);
 	}
 
 	public Integer getId() {
@@ -118,11 +118,11 @@ public class Cliente implements Serializable {
 		this.senha = senha;
 	}
 	
-	public Set<TipoPerfil> getPerfis(){
-		return perfis.stream().map(x -> TipoPerfil.toEnum(x)).collect(Collectors.toSet());
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 	
-	public void addPerfil(TipoPerfil perfil) {
+	public void addPerfil(Perfil perfil) {
 		perfis.add(perfil.getCod());
 	}
 
