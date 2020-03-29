@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mariath.spring.domain.Cidade;
 import com.mariath.spring.domain.Cliente;
 import com.mariath.spring.domain.Endereco;
+import com.mariath.spring.domain.enums.Perfil;
 import com.mariath.spring.domain.enums.TipoCliente;
 import com.mariath.spring.dto.ClienteDTO;
 import com.mariath.spring.dto.ClienteNewDTO;
 import com.mariath.spring.repositories.ClienteRepository;
 import com.mariath.spring.repositories.EnderecoRepository;
+import com.mariath.spring.security.UserSS;
+import com.mariath.spring.services.exceptions.AuthorizationException;
 import com.mariath.spring.services.exceptions.DataIntegrityException;
 import com.mariath.spring.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,12 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 
 	public Cliente find(Integer id) {
+		UserSS user = UserService.authenticated();
+		
+		if (user != null && !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Cliente não encontrado...:Id: " + id + ", Tipo: " + Cliente.class.getName()));
