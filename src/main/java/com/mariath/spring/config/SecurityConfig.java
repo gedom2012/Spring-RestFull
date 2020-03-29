@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.mariath.spring.security.JWTAuthenticationFilter;
+import com.mariath.spring.security.JWTAuthorizationFilter;
 import com.mariath.spring.security.JWTUtil;
 
 @Configuration
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			};
 	
 	private static final String[] PUBLIC_MATCHERS_GET = { 
-			"/clientes/**"			
+			"/produtos/**"			
 			};
 	
 
@@ -56,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.GET,  PUBLIC_MATCHERS_GET).permitAll()
 		.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtutil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtutil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
