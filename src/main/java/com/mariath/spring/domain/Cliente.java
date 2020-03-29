@@ -40,8 +40,7 @@ public class Cliente implements Serializable {
 	
 	@JsonIgnore
 	private String senha;
-
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
@@ -58,8 +57,8 @@ public class Cliente implements Serializable {
 		addPerfil(TipoPerfil.USER);
 	}
 
-	public Cliente(final Integer id, final String nome, final String dataNascimento, final String email,
-			final String cpfOuCnpj, final TipoCliente tipo, String senha) {
+	public Cliente(Integer id, String nome, String dataNascimento, String email,
+			String cpfOuCnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -75,7 +74,7 @@ public class Cliente implements Serializable {
 		return id;
 	}
 
-	public void setId(final Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -83,7 +82,7 @@ public class Cliente implements Serializable {
 		return nome;
 	}
 
-	public void setNome(final String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -91,7 +90,7 @@ public class Cliente implements Serializable {
 		return email;
 	}
 
-	public void setEmail(final String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -99,7 +98,7 @@ public class Cliente implements Serializable {
 		return cpfOuCnpj;
 	}
 
-	public void setCpfOuCnpj(final String cpfOuCnpj) {
+	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
@@ -107,7 +106,7 @@ public class Cliente implements Serializable {
 		return TipoCliente.toEnum(tipo);
 	}
 
-	public void setTipo(final TipoCliente tipo) {
+	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
 	}
 	
@@ -131,7 +130,7 @@ public class Cliente implements Serializable {
 		return enderecos;
 	}
 
-	public void setEnderecos(final List<Endereco> enderecos) {
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
@@ -139,7 +138,7 @@ public class Cliente implements Serializable {
 		return telefones;
 	}
 
-	public void setTelefones(final Set<String> telefones) {
+	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
 
@@ -160,14 +159,14 @@ public class Cliente implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Cliente other = (Cliente) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -51,11 +51,11 @@ public class Estado implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Cidade> getCidade() {
+	public List<Cidade> getCidades() {
 		return cidades;
 	}
 
-	public void setCidade(List<Cidade> cidades) {
+	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
 	}
 

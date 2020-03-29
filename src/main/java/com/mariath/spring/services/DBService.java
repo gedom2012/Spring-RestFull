@@ -40,8 +40,8 @@ public class DBService {
 		Cidade c2 = new Cidade(null, "Canoas", est1);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 
-		est1.getCidade().addAll(Arrays.asList(c1, c2));
-		est2.getCidade().addAll(Arrays.asList(c3));
+		est1.getCidades().addAll(Arrays.asList(c1, c2));
+		est2.getCidades().addAll(Arrays.asList(c3));
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepositoty.saveAll(Arrays.asList(c1, c2, c3));
