@@ -14,7 +14,7 @@ public class UserSS implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String user;
+	private String email;
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
 	
@@ -22,10 +22,10 @@ public class UserSS implements UserDetails {
 		
 	}	
 	
-	public UserSS(Integer id, String user, String password, Set<Perfil> perfis) {
+	public UserSS(Integer id, String email, String password, Set<Perfil> perfis) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.email = email;
 		this.password = password;
 		this.authorities = perfis.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toList());
 	}
@@ -46,7 +46,7 @@ public class UserSS implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return user;
+		return email;
 	}
 
 	@Override
@@ -67,6 +67,10 @@ public class UserSS implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
 	}
 
 	
